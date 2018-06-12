@@ -70,6 +70,11 @@ output "private_subnets_cidr_blocks" {
   value       = ["${aws_subnet.private.*.cidr_block}"]
 }
 
+output "private_subnets_azs" {
+  description = "List of availability zones of private subnets"
+  value       = ["${aws_subnet.private.*.availability_zone}"]
+}
+
 output "public_subnets" {
   description = "List of IDs of public subnets"
   value       = ["${aws_subnet.public.*.id}"]
@@ -80,6 +85,11 @@ output "public_subnets_cidr_blocks" {
   value       = ["${aws_subnet.public.*.cidr_block}"]
 }
 
+output "public_subnets_azs" {
+  description = "List of availability zones of public subnets"
+  value       = ["${aws_subnet.public.*.availability_zone}"]
+}
+
 output "database_subnets" {
   description = "List of IDs of database subnets"
   value       = ["${aws_subnet.database.*.id}"]
@@ -88,6 +98,11 @@ output "database_subnets" {
 output "database_subnets_cidr_blocks" {
   description = "List of cidr_blocks of database subnets"
   value       = ["${aws_subnet.database.*.cidr_block}"]
+}
+
+output "database_subnets_azs" {
+  description = "List of availability zones of database subnets"
+  value       = ["${aws_subnet.database.*.availability_zone}"]
 }
 
 output "database_subnet_group" {
@@ -105,6 +120,11 @@ output "redshift_subnets_cidr_blocks" {
   value       = ["${aws_subnet.redshift.*.cidr_block}"]
 }
 
+output "redshift_subnets_azs" {
+  description = "List of availability zones of redshift subnets"
+  value       = ["${aws_subnet.redshift.*.availability_zone}"]
+}
+
 output "redshift_subnet_group" {
   description = "ID of redshift subnet group"
   value       = "${element(concat(aws_redshift_subnet_group.redshift.*.id, list("")), 0)}"
@@ -120,14 +140,9 @@ output "elasticache_subnets_cidr_blocks" {
   value       = ["${aws_subnet.elasticache.*.cidr_block}"]
 }
 
-output "intra_subnets" {
-  description = "List of IDs of intra subnets"
-  value       = ["${aws_subnet.intra.*.id}"]
-}
-
-output "intra_subnets_cidr_blocks" {
-  description = "List of cidr_blocks of intra subnets"
-  value       = ["${aws_subnet.intra.*.cidr_block}"]
+output "elasticache_subnets_azs" {
+  description = "List of availability zones of elasticache subnets"
+  value       = ["${aws_subnet.elasticache.*.availability_zone}"]
 }
 
 output "elasticache_subnet_group" {
@@ -138,6 +153,21 @@ output "elasticache_subnet_group" {
 output "elasticache_subnet_group_name" {
   description = "Name of elasticache subnet group"
   value       = "${element(concat(aws_elasticache_subnet_group.elasticache.*.name, list("")), 0)}"
+}
+
+output "intra_subnets" {
+  description = "List of IDs of intra subnets"
+  value       = ["${aws_subnet.intra.*.id}"]
+}
+
+output "intra_subnets_cidr_blocks" {
+  description = "List of cidr_blocks of intra subnets"
+  value       = ["${aws_subnet.intra.*.cidr_block}"]
+}
+
+output "intra_subnets_azs" {
+  description = "List of availability zones of intra subnets"
+  value       = ["${aws_subnet.intra.*.availability_zone}"]
 }
 
 # Route tables
